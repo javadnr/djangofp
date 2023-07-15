@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+    {% if item_detail.cover %}
+    <img src="{{item_detail.cover.url}}" alt="{{item_detail.title}}" height="150" width="150">
+    
+    {% endif %}
+    
+    <h1>{{ item_detail.title }}</h1>
+    <h1>{{ item_detail.author }}</h1>
+    <h1>{{ item_detail.price }}</h1>
+    
+    <h1>REVIEWS</h1><br>
+
+    {% if item_detail.reviews.all %}
+    {% for review in item_detail.reviews.all %}
+    <a href="{% url 'review' %}">add review</a>
+    
+    <li>{{ review.review }} {{ review.date_added }} ({{review.author}})
+
+    </li>
+    
+    
+    {% endfor %} 
+    {% else %}
+    <a href="{% url 'review' %}">add review</a>
+      
+    {% endif %}
+    <!-- {% for review in item_detail.reviews.all %}
+    
+    <li>{{ review.review }} ({{review.author}})</li>
+    
+    {% endfor %} 
+     -->
+</div>
+{% endblock content %}
